@@ -1,5 +1,6 @@
 import tf from '@tensorflow/tfjs-node'
 import { Tools } from './helpers/tools.js'
+import { Training } from './helpers/training.js'
 
 export interface Pessoa { 
     idade: number;
@@ -35,12 +36,22 @@ const tensorPessoas = pessoas.map(pessoa => [
 const riscos = pessoas.map(pessoa => 
     [
         ...Tools.oneHotEncode(
-            Tools.riskAnalysis(pessoa).toString(), 
+            Tools.categorias_de_risco[Tools.riskAnalysis(pessoa)],
             Tools.categorias_de_risco
         )
     ])
 
+/**
+ * X representa as entradas (features).
+ * Y representa as saídas (labels).
+ */
+const tensorX = tf.tensor2d(tensorPessoas) // Features
+const tensorY = tf.tensor2d(riscos) // Target 
 
-const tensor = tf.tensor2d(tensorPessoas)
+tensorX.print()
+tensorY.print()
 
-tensor.print()
+
+const model = Training.train(tensorX, tensorY);
+
+Training.save(model);
