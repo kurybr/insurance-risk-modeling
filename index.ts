@@ -52,6 +52,10 @@ tensorX.print()
 tensorY.print()
 
 
-const model = Training.train(tensorX, tensorY);
 
-Training.save(model);
+// Para treinar e salvar (como está agora):
+const model = await Training.train(tensorX, tensorY);
+await Training.save(model);
+
+// Para só carregar o modelo já salvo (sem treinar):
+// const model = await Training.load();

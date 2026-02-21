@@ -1,10 +1,17 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
 import tf from '@tensorflow/tfjs-node';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 export class Training {
-    static path: string = 'model.json';
+    /** URL file:// para salvar/carregar no disco (obrigatório no Node) */
+    static get path(): string {
+        return 'file://' + path.resolve(__dirname, '..', 'model');
+    }
     static neurons: number = 100;
     static epochs: number = 100;
-    static train(tensorX: tf.Tensor, tensorY: tf.Tensor): tf.Sequential {
+    static async train(tensorX: tf.Tensor, tensorY: tf.Tensor): Promise<tf.Sequential> {
 
         /** Instance a model */
         const model = tf.sequential();
@@ -31,7 +38,7 @@ export class Training {
 
 
         /** Train the model */
-        model.fit(tensorX, tensorY, {
+        await model.fit(tensorX, tensorY, {
             verbose: 0,
             epochs: this.epochs,
             shuffle: true,
@@ -41,12 +48,12 @@ export class Training {
                 }
             }
         });
-        
+
         /** Return the model */
         return model;
     }
-    static save(model: tf.Sequential) {
-        model.save(this.path);
+    static async save(model: tf.Sequential): Promise<void> {
+        await model.save(this.path);
     }
 
     static async load(): Promise<tf.LayersModel> {
