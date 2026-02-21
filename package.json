@@ -1,0 +1,13 @@
+{
+    "scripts": {
+      "start": "node --no-warnings --watch index.js"
+    },
+    "types": "module",
+    "dependencies": {
+      "@tensorflow/tfjs-node": "4.22"
+    },
+    "engines": {
+      "node": "22.x"
+    }
+  }
+  
