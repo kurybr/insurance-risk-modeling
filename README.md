@@ -15,12 +15,12 @@ Projeto de estudo que usa **redes neurais** (TensorFlow.js) para classificar o r
 
 ### Estrutura do projeto
 
-- **`index.ts`** — Carrega o dataset, monta X e Y, treina o modelo, salva e faz predição para perfis de teste.
-- **`helpers/tools.ts`** — Normalização, one-hot encoding e regra de negócio de risco (`riskAnalysis`).
-- **`helpers/training.ts`** — Definição do modelo (camada densa + softmax), treino e save/load em disco.
-- **`helpers/predict.ts`** — Recebe o modelo e um tensor de entrada e imprime as probabilidades por categoria de risco.
-- **`data/dataset.json`** — Lista de pessoas usadas no treino.
-- **`model/`** — Modelo treinado salvo (gerado ao rodar).
+- `**index.ts`** — Carrega o dataset, monta X e Y, treina o modelo, salva e faz predição para perfis de teste.
+- `**helpers/tools.ts**` — Normalização, one-hot encoding e regra de negócio de risco (`riskAnalysis`).
+- `**helpers/training.ts**` — Definição do modelo (camada densa + softmax), treino e save/load em disco.
+- `**helpers/predict.ts**` — Recebe o modelo e um tensor de entrada e imprime as probabilidades por categoria de risco.
+- `**data/dataset.json**` — Lista de pessoas usadas no treino.
+- `**model/**` — Modelo treinado salvo (gerado ao rodar).
 
 ### Como rodar
 
@@ -33,13 +33,11 @@ O script lê o dataset, treina o modelo, salva e faz uma predição de exemplo (
 
 ---
 
-## Conceitos utilizados e material de apoio
+## Co**nceitos utilizados e material de apoi**o
 
 ### Arquitetura da rede neural
 
-<p align="center">
-  <img src="./assets/exemplo-rede-detalhada.png" alt="Arquitetura da Rede Neural" width="600">
-</p>
+
 
 A figura acima ilustra a arquitetura de uma **rede neural feedforward** (dados fluem da esquerda para a direita):
 
@@ -67,24 +65,26 @@ Dados **categóricos** (como região) viram **dimensões binárias**: cada categ
 
 **Região** (ordem: capital, interior, metropolitana):
 
+
 | Região        | Capital | Interior | Metropolitana |
 | ------------- | ------- | -------- | ------------- |
 | capital       | 1       | 0        | 0             |
 | interior      | 0       | 1        | 0             |
 | metropolitana | 0       | 0        | 1             |
 
+
 O **risco** também é one-hot encoded na saída: cada uma das 6 categorias é uma dimensão; a rede aprende a “acender” a categoria correta.
 
 ### Tensores de entrada e saída
 
 - **Tensor X (features / entradas):** contém os **dados de entrada** do modelo. Cada linha é uma pessoa, com 6 valores:  
-  `[idade_norm, renda_norm, exp_norm, capital, interior, metropolitana]`  
-  Ou seja: as três primeiras posições são numéricas normalizadas; as três últimas são o one-hot da região.
-
+`[idade_norm, renda_norm, exp_norm, capital, interior, metropolitana]`  
+Ou seja: as três primeiras posições são numéricas normalizadas; as três últimas são o one-hot da região.
 - **Tensor Y (labels / target / saídas):** contém as **respostas esperadas** para cada pessoa. Cada linha é o one-hot do risco daquela pessoa (6 posições, uma por categoria: nenhum, baixo, médio, alto, perigoso, recusar).
 
 > **Nota:** Na notação comum de aprendizado de máquina, **X** representa as *features* (atributos que entram no modelo) e **Y** representa o *target* (o que queremos prever). O modelo aprende a mapear X → Y: dado um vetor de entrada, produzir a classe de risco correta.
 
 ### Informações adicionais
 
-- **`one-hot.md`** — Guia didático sobre one-hot encoding (cada alternativa = uma coluna), com exemplos de região, risco e cidades.
+- `**one-hot.md`** — Guia didático sobre one-hot encoding (cada alternativa = uma coluna), com exemplos de região, risco e cidades.
+
