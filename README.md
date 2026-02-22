@@ -37,7 +37,7 @@ O script lê o dataset, treina o modelo, salva e faz uma predição de exemplo (
 
 ### Arquitetura da rede neural
 
-
+<img src="./assets/exemplo-rede-detalhada.png" alt='Imagem ilustrando uma rede neural simples'>
 
 A figura acima ilustra a arquitetura de uma **rede neural feedforward** (dados fluem da esquerda para a direita):
 
