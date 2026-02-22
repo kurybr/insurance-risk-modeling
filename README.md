@@ -86,5 +86,5 @@ Ou seja: as três primeiras posições são numéricas normalizadas; as três ú
 
 ### Informações adicionais
 
-- `**one-hot.md`** — Guia didático sobre one-hot encoding (cada alternativa = uma coluna), com exemplos de região, risco e cidades.
+- **one-hot.md** — Guia didático sobre one-hot encoding (cada alternativa = uma coluna), com exemplos de região, risco e cidades.
 
