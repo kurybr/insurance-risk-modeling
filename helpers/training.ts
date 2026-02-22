@@ -9,7 +9,7 @@ export class Training {
     static get path(): string {
         return 'file://' + path.resolve(__dirname, '..', 'model');
     }
-    static neurons: number = 100;
+    static neurons: number = 10000;
     static epochs: number = 100;
     static async train(tensorX: tf.Tensor, tensorY: tf.Tensor): Promise<tf.Sequential> {
 
@@ -44,7 +44,7 @@ export class Training {
             shuffle: true,
             callbacks: {
                 onEpochEnd: (epoch, logs) => {
-                    console.log(`Epoch ${epoch}: loss = ${logs?.loss}`);
+                    // console.log(`Epoch ${epoch}: loss = ${logs?.loss}`);
                 }
             }
         });
