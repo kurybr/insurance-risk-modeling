@@ -13,23 +13,23 @@ export class Training {
     static epochs: number = 100;
     static async train(tensorX: tf.Tensor, tensorY: tf.Tensor): Promise<tf.Sequential> {
 
-        /** Instance a model */
+        /** Instancia o modelo */
         const model = tf.sequential();
 
-        /** Add layers to the model */
+        /** Adiciona camadas ao modelo */
         model.add(tf.layers.dense({ 
             units: this.neurons, 
-            inputShape: [tensorX.shape[1] as number], // Information size of the input layer,
+            inputShape: [tensorX.shape[1] as number], // Tamanho da entrada (camada de entrada)
             activation: 'relu'
         }));
         
-        /** Add output layer to the model */
+        /** Adiciona a camada de saída ao modelo */
         model.add(tf.layers.dense({ 
-            units: tensorY.shape[1] as number,  // Information size of the output layer
+            units: tensorY.shape[1] as number,  // Tamanho da saída (camada de saída)
             activation: 'softmax'
         }));
         
-        /** Compile the model */
+        /** Compila o modelo */
         model.compile({ 
             optimizer: 'adam',
             loss: 'categoricalCrossentropy',
@@ -37,7 +37,7 @@ export class Training {
         });
 
 
-        /** Train the model */
+        /** Treina o modelo */
         await model.fit(tensorX, tensorY, {
             verbose: 0,
             epochs: this.epochs,
@@ -49,7 +49,7 @@ export class Training {
             }
         });
 
-        /** Return the model */
+        /** Retorna o modelo */
         return model;
     }
     static async save(model: tf.Sequential): Promise<void> {

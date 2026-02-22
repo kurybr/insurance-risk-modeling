@@ -2,32 +2,32 @@ import { Person } from "../index.js";
 
 export class Tools {
     /**
-     * Calculate the tensor number.
-     * When the value is 1 is a Max value, 0 is a Min value.
-     * Example:
-     * 
+     * Calcula o número do tensor (normalização).
+     * Quando o valor é 1 representa o máximo, 0 representa o mínimo.
+     * Exemplo:
+     *
      * min = 0
      * max = 100
      * value = 50
-     * 
+     *
      * (50 - 0) / (100 - 0) = 0.5
-     * 
-     * 0.5 is the tensor number.
-     * 
-     * @param min - The minimum value.
-     * @param max - The maximum value.
-     * @param value - The value to be calculated.
-     * @returns The tensor number.
+     *
+     * 0.5 é o número do tensor.
+     *
+     * @param min - O valor mínimo.
+     * @param max - O valor máximo.
+     * @param value - O valor a ser calculado.
+     * @returns O número do tensor normalizado.
      */
     static calcTensorNumber(min: number, max: number, value: number) {
         return (value - min) / (max - min);
     }
 
     /**
-     * One hot encode the data.
-     * @param data - The data to be encoded.
-     * @param categories - The categories to be encoded.
-     * @returns The one hot encoded data.
+     * Codifica os dados em one-hot.
+     * @param data - O dado a ser codificado.
+     * @param categories - As categorias para codificação.
+     * @returns Os dados codificados em one-hot.
      */
     static oneHotEncode(data: string, categories: string[]) {
         return categories.map(category => data === category ? 1 : 0);

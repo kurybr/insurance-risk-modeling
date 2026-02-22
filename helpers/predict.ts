@@ -1,5 +1,4 @@
 import tf from '@tensorflow/tfjs-node';
-import { Training } from './training.js';
 import { Tools } from './tools.js';
 
 export class Predict {
