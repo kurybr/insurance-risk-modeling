@@ -15,12 +15,12 @@ Projeto de estudo que usa **redes neurais** (TensorFlow.js) para classificar o r
 
 ### Estrutura do projeto
 
-- `**index.ts`** — Carrega o dataset, monta X e Y, treina o modelo, salva e faz predição para perfis de teste.
-- `**helpers/tools.ts**` — Normalização, one-hot encoding e regra de negócio de risco (`riskAnalysis`).
-- `**helpers/training.ts**` — Definição do modelo (camada densa + softmax), treino e save/load em disco.
-- `**helpers/predict.ts**` — Recebe o modelo e um tensor de entrada e imprime as probabilidades por categoria de risco.
-- `**data/dataset.json**` — Lista de pessoas usadas no treino.
-- `**model/**` — Modelo treinado salvo (gerado ao rodar).
+- `index.ts` — Carrega o dataset, monta X e Y, treina o modelo, salva e faz predição para perfis de teste.
+- `helpers/tools.ts` — Normalização, one-hot encoding e regra de negócio de risco (`riskAnalysis`).
+- `helpers/training.ts` — Definição do modelo (camada densa + softmax), treino e save/load em disco.
+- `helpers/predict.ts` — Recebe o modelo e um tensor de entrada e imprime as probabilidades por categoria de risco.
+- `data/dataset.json` — Lista de pessoas usadas no treino.
+- `model/` — Modelo treinado salvo (gerado ao rodar).
 
 ### Como rodar
 
@@ -83,6 +83,8 @@ Ou seja: as três primeiras posições são numéricas normalizadas; as três ú
 - **Tensor Y (labels / target / saídas):** contém as **respostas esperadas** para cada pessoa. Cada linha é o one-hot do risco daquela pessoa (6 posições, uma por categoria: nenhum, baixo, médio, alto, perigoso, recusar).
 
 > **Nota:** Na notação comum de aprendizado de máquina, **X** representa as *features* (atributos que entram no modelo) e **Y** representa o *target* (o que queremos prever). O modelo aprende a mapear X → Y: dado um vetor de entrada, produzir a classe de risco correta.
+>
+> **Correspondência X e Y:** em aprendizado supervisionado, cada linha de X deve ter uma linha correspondente em Y (mesmo índice = mesmo exemplo). O número de linhas dos dois tensores é sempre igual: cada entrada tem um rótulo. No projeto, cada pessoa do dataset gera uma linha em X e uma linha em Y.
 
 ### Informações adicionais
 
